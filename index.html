@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body 
+    {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color:lightgrey;
+        height: 100%;
+    }
+    .mySlides
+    {
+        display: none;
+    }
+
+    img
+    {
+        vertical-align: middle;
+    }
+
+    * 
+    {
+        box-sizing: border-box;
+    }
+
+    .row 
+    {
+        display: flex;
+    }
+
+    .left 
+    {
+        margin: 5%;
+        flex: 35%;
+        padding: 15px 0;
+        background-color: orange;
+        height: 400px;
+        text-align: center;
+    }
+
+    .left h2 
+    {
+        padding-left: 8px;
+    }
+
+  /* Right column (page content) */
+    .right 
+    {
+        margin: 5%;
+        flex: 65%;
+        padding: 0px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center horizontally */
+        background-color: orange;
+        height: 800px;
+    }
+
+    /* Style the search box */
+    #mySearch 
+    {
+        width: 100%;
+        font-size: 18px;
+        padding: 11px;
+        border: 1px solid #ddd;
+    }
+
+    /* Style the navigation menu inside the left column */
+    #myMenu 
+    {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    #myMenu li a
+    {
+        padding: 12px;
+        text-decoration: none;
+        color: white;
+        display: block;
+    }
+
+    .header 
+    {
+        overflow: hidden;
+        background-color:orange;
+        padding: 20px 10px;
+    }
+
+    .header a {
+        float: left;
+        color: white;
+        text-align: center;
+        padding: 12px;
+        text-decoration: none;
+        font-size: 18px; 
+        line-height: 25px;
+        border-radius: 4px;
+    }
+
+    .header a.logo {
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .header a:hover 
+    {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .header a.active 
+    {
+        background-color: dodgerblue;
+        color: white;
+    }
+
+    .header-right 
+    {
+        float: right;
+    }
+
+    @media screen and (max-width: 500px) 
+    {
+        .header a 
+        {
+            float: none;
+            display: block;
+            text-align: left;
+        }
+    
+        .header-right 
+        {
+            float: none;
+        }
+    }
+  
+    .container1 
+    {
+        color: rgb(109, 16, 47);
+        height: 300px;
+        text-align: center;
+        padding:60px;
+        background-image: url("header4.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    #myMenu li a:hover 
+    {
+        background-color: gray;
+    }
+
+    /*fixed size for images */
+    .orphanage-image 
+    {
+        width: 450px; /*the size of image */
+        height: 400px; /* the size of image */
+    }
+
+    /*size of the progress bar */
+    progress 
+    {
+        height: 40px; 
+    }
+    .TimeDisplay
+    {
+        box-shadow: 0 0 15px 2px black;
+        width:200px white;
+        font-size:xx-large;
+        font-weight:bold;
+        font-family:Roboto;
+        height:150px;
+        padding: 50px;
+        border: 1px solid white;
+        box-sizing:border-box;
+        text-align:center;
+    }
+    footer 
+    {
+        flex: 65%;
+        height: 200px; /* Adjusting the height*/
+        background-color:orange;
+        display: flex;
+        color: white;
+        justify-content: center;
+        padding-top: 120px;
+        text-align: center;
+        }
+    .Onnames
+    {
+        margin:300px;
+        padding:15px;
+        align-items: center;
+     }
+    /* Slideshow container */
+    .slideshow-container 
+    {
+        max-width: 100%;
+        margin: auto;
+        color: rgb(109, 16, 47);
+        height: 360px;
+        text-align: center;
+    }
+
+    /* Caption text */
+    .text 
+    {
+        color: #f2f2f2;
+        font-size: 15px;
+        padding: 8px 12px;
+        position: absolute;
+        bottom: 8px;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Number text (1/3 etc) */
+    .numbertext 
+    {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot 
+    {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+    }
+
+    .active 
+    {
+        background-color: #717171;
+    }
+
+    /* Fading animation */
+    .fade 
+    {
+        animation-name: fade;
+        animation-duration: 5s;
+    }
+
+    @keyframes fade 
+    {
+        from 
+        {
+            opacity: .4
+        } 
+        to 
+        {
+            opacity: 1
+        }
+    }
+    /* On smaller screens, decrease text size */
+    @media only screen and (max-width: 300px) 
+    {
+        .text {font-size: 11px}
+    }
+    .img1
+    {
+        
+        translate: 0px 150px;
+    }      
+</style>
+</head>
+<body>
+    <div class="header">
+        <img src="logo.jpg" style="height: 50px;" width="80px" alt="">
+        <div class="header-right">
+          <a class="active" href="#">Home</a>
+          <a href="#contact">Contact</a>
+          <a href="#about">About</a>
+        </div>
+    </div>
+      <div class="slideshow-container">
+        <div class="mySlides fade">
+          <img src="header4.jpg" style="width:1000px">
+        </div>
+        
+        <div class="mySlides fade">
+          <img src="orphan2.jpg" style="width:60%" style="height: 100px;">
+        </div>
+        
+        <div class="mySlides fade">
+          <img src="orphan5.jpg" style="width:65%">
+        </div>
+        
+        </div>
+        <br>
+        
+        <div style="text-align:center">
+          <span class="dot"></span> 
+          <span class="dot"></span> 
+          <span class="dot"></span> 
+        </div>
+    <div class="row">
+        <div class="left">
+            <ul id="myMenu">
+            </ul>
+            <div><img src="header3.jpg" class="img1" alt="" style="width: 400px; height: 270px;"></div>
+        </div>
+
+        <div class="right">
+            <h2>ORPHANS' LIVES MATTER </h2>
+            <p>The Good Life Orphanage provides a safe and secure home for orphaned and abandoned<br> children
+            in Lesotho from different districts.Orphans in Need is a charity dedicated to supporting<br>
+            vulnerable orphans, empowering and nurturing them to lead fulfilling lives.</p>
+            <div id="menuDetails">The results will be diaplayed here  
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() 
+        {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) 
+            {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) 
+            {
+                slideIndex = 1
+            }    
+            for (i = 0; i < dots.length; i++) 
+            {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";  
+            dots[slideIndex-1].className += " active";
+            setTimeout(showSlides, 5000); // Change image every 2 seconds
+        }
+
+        // var countClicks = 0;//initializing count on clicks
+        var ul = document.getElementById("myMenu").addEventListener('click',NameOforphanages());
+        function myFunction() 
+        {
+            const input = document.getElementById("mySearch");
+            const filter = input.value.toUpperCase();
+            const ul = document.getElementById("myMenu");
+            const li = ul.getElementsByTagName("li");
+
+            for (let i = 0; i < li.length; i++) 
+            {
+                const a = li[i].getElementsByTagName("a")[0];
+                const orphanageId = a.getAttribute("data-orphanage-id");
+
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) 
+                {//checking whether the input is capasised
+                    li[i].style.display = "";
+        
+                    a.onclick = function() 
+                    {
+                    fetchOrphanageDetails(orphanageId);//calling a function to display orphanages
+                    setTimeout(TimeLimiter,15000);//calling a function that allows displaying content for 15 secs
+                    setTimeout(reloading,20000)//reloading the page after 5 secs the content has being displayed    
+                    };
+                } 
+                else 
+                {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+        function fetchOrphanageDetails(orphanageId) 
+        {
+            const orphanageDetails = document.getElementById("menuDetails");
+
+            orphanageDetails.innerHTML = '';//for overwriting the previsousily displayed content
+
+            fetch(`https://lesotho-orphanages.vercel.app/${orphanageId}`)
+            .then(response => response.json())
+            .then(details => {
+            const moreDetails = document.createElement('div');
+            const progressBar = document.createElement('progress');
+
+            // Calculate the percentage
+            const donated = details.donated;
+            const target = details.target;
+            const percentage = (donated / target) * 100;
+
+            progressBar.value = percentage; // Set the progress bar value to the percentage
+            progressBar.max = 100; // Maximum value for a progress bar is 100
+
+            moreDetails.textContent = `Donation Progress: ${percentage.toFixed(2)}%`;
+            orphanageDetails.style.textAlign = "center";
+            orphanageDetails.appendChild(moreDetails);
+            orphanageDetails.appendChild(progressBar);
+
+            const orphanageInfo = document.createElement('div');
+            orphanageInfo.style.textAlign = "center"; /* Center text horizontally */
+            orphanageInfo.innerHTML = `
+                <h2>${details.name}</h2>
+                <p>ID: ${details.id}</p>
+                <p>Location: ${details.location}</p>
+                <img class="orphanage-image" src="${details.image}" alt="${details.name}" style="Height:15%" />
+            `;
+            orphanageDetails.appendChild(orphanageInfo);
+            })
+            .catch(error => 
+            {
+                console.error(error);
+                orphanageDetails.innerHTML = 'Failed to fetch orphanage details.';
+            });
+        }
+        function TimeLimiter() 
+        {//limits how long the content should be displayed
+            var message;
+            var deco;
+        
+            deco = document.getElementById("menuDetails").setAttribute("class","TimeDisplay");
+            message = document.getElementById("menuDetails").innerHTML = "Thank you for visiting our website !!";
+        }
+
+        function NameOforphanages() 
+        {
+            fetch('https://lesotho-orphanages.vercel.app/')
+            .then(response => response.json())
+            .then(data => 
+            {
+                const orphanages = document.getElementById('myMenu');
+                var output = "<h2>Orphanage Names</h2>";
+                orphanages.innerHTML = output;
+
+                data.forEach(orphanage => 
+                {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a'); // Create an anchor element
+                    a.href = '#'; // Set the href attribute (you can set it to a specific link if needed)
+                    a.textContent = orphanage.name; // Set the text content of the anchor
+
+                    li.appendChild(a); // Append the anchor to the list item
+                    orphanages.appendChild(li);
+
+                    a.onclick = function () {
+                    fetchOrphanageDetails(orphanage.id);
+                    };
+                });
+            })
+            .catch(error => console.error(error));
+
+            document.getElementById("myMenu").style.color = "white";
+            document.getElementsByTagName("li").style.setAttribute("id", "Onnames");
+        };
+    </script>
+    <footer>
+        <p>Developed by: M.Phakoana , I.Makakole , P.Thakanyane , M.Mositi , T.Mothibeli<br>
+        copyright &copy; Lesotho-orphanages@mail.com</p>
+    </footer>
+</body>
+</html>
